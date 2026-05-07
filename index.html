@@ -1,155 +1,15 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WQV-1 Emulator</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --lcd-bg: #8ba88e;
-            --lcd-fg: #2a332b;
-            --case-color: #d1d5db;
-            --shadow-color: #9ca3af;
-        }
-
-        body {
-            background-color: #1a1a1a;
-            color: white;
-            font-family: 'VT323', monospace;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
-            overflow: hidden;
-        }
-
-        .casio-body {
-            background: var(--case-color);
-            padding: 20px;
-            border-radius: 40px;
-            box-shadow: 
-                inset 2px 2px 0 #fff,
-                inset -4px -4px 0 var(--shadow-color),
-                10px 20px 40px rgba(0,0,0,0.5);
-            width: 320px;
-            border: 8px solid #374151;
-            position: relative;
-        }
-
-        .lcd-screen {
-            background-color: var(--lcd-bg);
-            border: 6px solid #1f2937;
-            padding: 10px;
-            border-radius: 4px;
-            position: relative;
-            box-shadow: inset 0 0 10px rgba(0,0,0,0.2);
-            overflow: hidden;
-        }
-
-        .pixel-canvas {
-            image-rendering: pixelated;
-            width: 100%;
-            height: auto;
-            display: block;
-            background: var(--lcd-bg);
-            filter: contrast(1.1) brightness(0.9);
-        }
-
-        .ui-label {
-            font-size: 0.8rem;
-            color: #4b5563;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-weight: bold;
-        }
-
-        .lcd-overlay {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            right: 10px;
-            display: flex;
-            justify-content: space-between;
-            color: var(--lcd-fg);
-            font-size: 1.2rem;
-            pointer-events: none;
-        }
-
-        .control-btn {
-            background: #4b5563;
-            border: none;
-            border-bottom: 4px solid #1f2937;
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            cursor: pointer;
-            transition: all 0.1s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 0 #111827;
-        }
-
-        .control-btn:active {
-            transform: translateY(2px);
-            border-bottom-width: 2px;
-            box-shadow: 0 2px 0 #111827;
-        }
-
-        .shutter-btn {
-            background: #ef4444;
-            width: 70px;
-            height: 70px;
-        }
-
-        .bezel-text {
-            color: #1f2937;
-            font-size: 0.6rem;
-            text-align: center;
-            margin-top: 5px;
-            font-family: sans-serif;
-            font-weight: 900;
-        }
-
-        #gallery {
-            position: fixed;
-            bottom: 20px;
-            left: 0;
-            right: 0;
-            display: flex;
-            gap: 10px;
-            padding: 10px;
-            overflow-x: auto;
-            background: rgba(0,0,0,0.8);
-        }
-
-        .gallery-item {
-            width: 80px;
-            height: 80px;
-            border: 2px solid white;
-            image-rendering: pixelated;
-            flex-shrink: 0;
-            cursor: pointer;
-        }
-
-        .msg-box {
-            position: absolute;
-            background: var(--lcd-bg);
-            color: var(--lcd-fg);
-            border: 2px solid var(--lcd-fg);
-            padding: 10px;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 10;
-            display: none;
-            text-align: center;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
     <div class="casio-body">
@@ -163,9 +23,9 @@
                 <span id="clock">12:00</span>
                 <span id="mode-indicator">LIVE</span>
             </div>
-            
+
             <canvas id="outputCanvas" width="120" height="120" class="pixel-canvas"></canvas>
-            
+
             <div class="lcd-overlay" style="top: auto; bottom: 10px; font-size: 0.9rem">
                 <span>REC</span>
                 <span id="counter">000</span>
@@ -179,14 +39,28 @@
         <div class="mt-4 grid grid-cols-4 gap-2 px-2">
             <div class="flex flex-col items-center gap-1">
                 <button class="control-btn" id="brightBtn">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="5" />
+                        <line x1="12" y1="1" x2="12" y2="3" />
+                        <line x1="12" y1="21" x2="12" y2="23" />
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+                        <line x1="1" y1="12" x2="3" y2="12" />
+                        <line x1="21" y1="12" x2="23" y2="12" />
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+                    </svg>
                 </button>
                 <span class="ui-label" style="font-size:0.6rem">BRIGHT</span>
             </div>
 
             <div class="flex flex-col items-center gap-1">
                 <button class="control-btn" id="importBtn">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                        <polyline points="17 8 12 3 7 8" />
+                        <line x1="12" y1="3" x2="12" y2="15" />
+                    </svg>
                 </button>
                 <span class="ui-label" style="font-size:0.6rem">IMPORT</span>
                 <input type="file" id="fileInput" accept="image/*" style="display:none">
@@ -194,14 +68,20 @@
 
             <div class="flex flex-col items-center gap-1">
                 <button class="control-btn" id="camBtn">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z" />
+                        <circle cx="12" cy="13" r="4" />
+                    </svg>
                 </button>
                 <span class="ui-label" style="font-size:0.6rem">CAM</span>
             </div>
 
             <div class="flex flex-col items-center gap-1">
                 <button class="control-btn" id="invertBtn">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 0 0-10 10 10 10 0 0 0 10 10 10 10 0 0 0 10-10 10 10 0 0 0-10-10z"/><path d="M12 2v20"/></svg>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 2a10 10 0 0 0-10 10 10 10 0 0 0 10 10 10 10 0 0 0 10-10 10 10 0 0 0-10-10z" />
+                        <path d="M12 2v20" />
+                    </svg>
                 </button>
                 <span class="ui-label" style="font-size:0.6rem">INV</span>
             </div>
@@ -219,168 +99,18 @@
 
     <div id="gallery"></div>
 
+    <!-- Modal -->
+    <div id="imageModal" class="modal-overlay hidden">
+        <button id="closeModalBtn" class="modal-close-btn">&times;</button>
+        <img id="modalImage" class="modal-image" src="" alt="Enlarged view">
+        <button id="downloadModalBtn" class="modal-download-btn">
+            DOWNLOAD
+        </button>
+    </div>
+
     <video id="video" autoplay playsinline style="display:none"></video>
 
-    <script>
-        const video = document.getElementById('video');
-        const canvas = document.getElementById('outputCanvas');
-        const ctx = canvas.getContext('2d', { alpha: false });
-        const shutterBtn = document.getElementById('shutterBtn');
-        const brightBtn = document.getElementById('brightBtn');
-        const invertBtn = document.getElementById('invertBtn');
-        const importBtn = document.getElementById('importBtn');
-        const camBtn = document.getElementById('camBtn');
-        const fileInput = document.getElementById('fileInput');
-        const gallery = document.getElementById('gallery');
-        const msgBox = document.getElementById('msgBox');
-        const counterEl = document.getElementById('counter');
-        const modeIndicator = document.getElementById('mode-indicator');
-
-        let brightness = 1.0;
-        let isInverted = false;
-        let photoCount = 0;
-        let currentSource = 'camera'; // 'camera' or 'image'
-        let importedImage = null;
-
-        const bayerMatrix = [
-            [ 0,  8,  2, 10],
-            [12,  4, 14,  6],
-            [ 3, 11,  1,  9],
-            [15,  7, 13,  5]
-        ];
-
-        async function initCamera() {
-            try {
-                const stream = await navigator.mediaDevices.getUserMedia({ 
-                    video: { facingMode: 'user', width: 480, height: 480 }, 
-                    audio: false 
-                });
-                video.srcObject = stream;
-                currentSource = 'camera';
-                modeIndicator.innerText = 'LIVE';
-            } catch (err) {
-                console.error("Camera error:", err);
-                showMessage("CAMERA ERROR");
-            }
-        }
-
-        function processFrame() {
-            if (currentSource === 'camera' && video.readyState === video.HAVE_ENOUGH_DATA) {
-                // Centre l'image caméra (Crop carré)
-                const size = Math.min(video.videoWidth, video.videoHeight);
-                const startX = (video.videoWidth - size) / 2;
-                const startY = (video.videoHeight - size) / 2;
-                ctx.drawImage(video, startX, startY, size, size, 0, 0, 120, 120);
-                applyWQV1Filter();
-            } else if (currentSource === 'image' && importedImage) {
-                ctx.drawImage(importedImage, 0, 0, 120, 120);
-                applyWQV1Filter();
-            }
-            requestAnimationFrame(processFrame);
-        }
-
-        function applyWQV1Filter() {
-            const imageData = ctx.getImageData(0, 0, 120, 120);
-            const data = imageData.data;
-
-            for (let i = 0; i < data.length; i += 4) {
-                const x = (i / 4) % 120;
-                const y = Math.floor((i / 4) / 120);
-
-                // Conversion Luminance
-                let gray = 0.299 * data[i] + 0.587 * data[i+1] + 0.114 * data[i+2];
-                gray *= brightness;
-
-                // Ordered Dithering (16 levels)
-                let level = (gray / 255) * 15;
-                const ditheredLevel = Math.floor(level + (bayerMatrix[y % 4][x % 4] / 16));
-                const finalLevel = Math.min(15, Math.max(0, ditheredLevel));
-                
-                let output = (finalLevel / 15) * 255;
-                if (isInverted) output = 255 - output;
-
-                data[i] = data[i+1] = data[i+2] = output;
-            }
-            ctx.putImageData(imageData, 0, 0);
-        }
-
-        function showMessage(text) {
-            msgBox.innerText = text;
-            msgBox.style.display = 'block';
-            setTimeout(() => msgBox.style.display = 'none', 1500);
-        }
-
-        // Gestion de l'importation
-        importBtn.onclick = () => fileInput.click();
-        
-        fileInput.onchange = (e) => {
-            const file = e.target.files[0];
-            if (!file) return;
-
-            const reader = new FileReader();
-            reader.onload = (event) => {
-                const img = new Image();
-                img.onload = () => {
-                    importedImage = img;
-                    currentSource = 'image';
-                    modeIndicator.innerText = 'FILE';
-                    showMessage("IMG LOADED");
-                };
-                img.src = event.target.result;
-            };
-            reader.readAsDataURL(file);
-        };
-
-        camBtn.onclick = () => {
-            currentSource = 'camera';
-            modeIndicator.innerText = 'LIVE';
-            showMessage("CAM MODE");
-        };
-
-        shutterBtn.onclick = () => {
-            const dataUrl = canvas.toDataURL('image/png');
-            const img = document.createElement('img');
-            img.src = dataUrl;
-            img.className = 'gallery-item';
-            img.onclick = () => {
-                const link = document.createElement('a');
-                link.download = `WQV1_${Date.now()}.png`;
-                link.href = dataUrl;
-                link.click();
-            };
-            gallery.prepend(img);
-            
-            photoCount++;
-            counterEl.innerText = photoCount.toString().padStart(3, '0');
-            showMessage("MEM SAVED");
-            
-            canvas.style.filter = 'brightness(3)';
-            setTimeout(() => canvas.style.filter = 'contrast(1.1) brightness(0.9)', 100);
-        };
-
-        brightBtn.onclick = () => {
-            brightness += 0.2;
-            if (brightness > 2.0) brightness = 0.6;
-            showMessage(`LIGHT: ${Math.round(brightness * 10)}`);
-        };
-
-        invertBtn.onclick = () => {
-            isInverted = !isInverted;
-            showMessage(isInverted ? "NEGATIVE" : "NORMAL");
-        };
-
-        function updateClock() {
-            const now = new Date();
-            document.getElementById('clock').innerText = 
-                `${now.getHours().toString().padStart(2,'0')}:${now.getMinutes().toString().padStart(2,'0')}`;
-        }
-        setInterval(updateClock, 1000);
-        updateClock();
-
-        window.onload = () => {
-            initCamera();
-            processFrame();
-        };
-    </script>
+    <script src="script.js"></script>
 </body>
+
 </html>
