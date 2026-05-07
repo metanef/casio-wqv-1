@@ -1,40 +1,68 @@
-# Casio WQV-1 Emulator
+<div align="center">
+  <img src="icon-192.png" alt="Casio WQV-1 Icon" width="120" style="border-radius: 20px;" />
+  <h1>📸 Casio WQV-1 Emulator</h1>
+  <p><strong>A retro web-based emulator for the classic Casio WQV-1 Wrist Camera.</strong></p>
 
-A web-based emulator for the classic **Casio WQV-1 Wrist Camera** (the first watch with a built-in digital camera!). This app recreates the retro 120x120 pixelated grayscale aesthetic directly in your browser.
+  [![Live Demo](https://img.shields.io/badge/Play-Live_Demo-brightgreen.svg?style=for-the-badge&logo=vercel)](https://metanef.github.io/casio-wqv-1/)
+  [![PWA Ready](https://img.shields.io/badge/PWA-Supported-blue.svg?style=for-the-badge&logo=pwa)](https://metanef.github.io/casio-wqv-1/)
+</div>
 
-## Features
+<br/>
 
-- **Live Camera Feed**: Access your webcam and apply a real-time retro dithered filter.
-- **Image Import**: Upload any image from your device to see how it would look through the lens of a WQV-1.
-- **Take Photos**: Snap photos in the app which are saved to a bottom gallery.
-- **Gallery & Modal View**: Click on any photo in the gallery to view it enlarged in a modal.
-- **Download**: Download your retro photos to your device.
-- **Adjustments**:
+## 🌟 About the Project
+
+Experience the nostalgia of the very first watch with a built-in digital camera! This web application faithfully recreates the iconic 120x120 pixelated, grayscale aesthetic of the early 2000s. Whether you're on your computer or your smartphone, you can step back in time and capture the world in pure retro style.
+
+---
+
+## ✨ Features
+
+- **📷 Live Camera Feed**: Access your webcam/phone camera with a real-time retro dithered filter.
+- **🖼️ Image Import**: Upload any image from your device to see it transformed through the WQV-1 lens.
+- **💾 Take Photos**: Snap pictures that automatically save to your interactive bottom gallery.
+- **🔍 Modal View**: Click on any photo in the gallery to view it enlarged with perfect pixel-art scaling.
+- **📥 Download**: Save your 120x120 retro masterpieces directly to your device.
+- **📱 PWA Support**: Install the app on your Android or iOS device to use it fullscreen and offline, just like a native app!
+- **🎛️ Adjustments**:
   - **BRIGHT**: Cycle through different brightness levels.
-  - **INV**: Invert the colors for a negative effect.
+  - **INV**: Invert the colors for a cool negative effect.
 
-## How to Run
+---
 
-Since the application uses your device's webcam and JavaScript modules, it needs to be run in a secure context (HTTPS or localhost). 
+## 🛠️ Technologies Used
 
-**Option 1: Using a local server (Recommended)**
-If you have Node.js installed, you can serve the directory using `npx serve` or any other local web server:
-```bash
-npx serve .
-```
+This project is built using a lightweight, modern web stack without heavy frameworks:
 
-**Option 2: Live Server Extension**
-If you use VS Code, install the "Live Server" extension, right-click `index.html`, and select "Open with Live Server".
+- **HTML5 & CSS3**: Core layout and structure.
+- **Vanilla JavaScript (ES6+)**: Handles camera streams, canvas manipulation, and UI interactions.
+- **Tailwind CSS**: Used for rapid UI styling, custom watch casing, and responsive design.
+- **Canvas API**: Powers the custom image processing, specifically the **Ordered Dithering via a Bayer Matrix** to achieve the authentic Casio look.
+- **Service Workers (PWA)**: Ensures offline capabilities and allows native installation on mobile devices.
 
-## Technologies Used
+---
 
-- **HTML5** for structure
-- **CSS3 / Tailwind CSS** for styling the retro Casio watch interface
-- **Vanilla JavaScript** for camera logic, image processing (Ordered Dithering via Bayer Matrix), and UI interactions
-- **Canvas API** for applying the real-time retro filters
+## 📝 TODO List
 
-## Structure
+Want to contribute or see what's coming next? Here's the roadmap:
 
-- `index.html`: Main interface and layout.
-- `style.css`: Custom CSS for the retro watch casing, LCD screen, and modal overlays.
-- `script.js`: Core logic for webcam access, canvas drawing, and UI handling.
+- [ ] 🔊 Add authentic retro sound effects (shutter click, button beeps).
+- [ ] ⚡ Add a visual "screen flash" animation when taking a photo.
+- [ ] 💾 Save the gallery photos to `localStorage` so they persist after refreshing the app.
+- [ ] 🎨 Add different retro color palettes (e.g., GameBoy green, sepia).
+- [ ] ⏱️ Implement a self-timer feature.
+- [ ] 📱 Improve the UI responsiveness for very small or very large screens.
+
+---
+
+## 🚀 How to Run Locally
+
+If you want to run or modify the project on your own machine:
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/metanef/casio-wqv-1.git
+   ```
+2. Open the project folder.
+3. Since the application uses the Camera API (`getUserMedia`), it needs to be run in a secure context (HTTPS or localhost).
+   - **Using Node.js**: Run `npx serve .` in the terminal.
+   - **Using VS Code**: Install the "Live Server" extension, right-click `index.html`, and select "Open with Live Server".
