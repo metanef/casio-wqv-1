@@ -45,12 +45,20 @@ This project is built using a lightweight, modern web stack without heavy framew
 
 Want to contribute or see what's coming next? Here's the roadmap:
 
+### ✅ v1 Roadmap
 - [x] Add authentic retro sound effects (shutter click, button beeps).
 - [x] Save the gallery photos to `localStorage` so they persist after refreshing the app.
 - [x] Add different retro color palettes (e.g., GameBoy green, sepia).
 - [x] Implement a self-timer feature.
 - [x] Add a button to change between front and back camera for phone
-- [ ] Improve the UI responsiveness for very small or very large screens.
+- [x] Improve the UI responsiveness for very small or very large screens.
+
+### 🌟 v2 Roadmap (Coming Soon)
+- [ ] Add a short video recording feature (e.g., 3 seconds of 10fps dithered video).
+- [ ] "IR Transfer" simulation: Share photos via QR code directly from the screen.
+- [ ] Add digital zoom capabilities.
+- [ ] Allow adding short retro text captions burned into the images before saving.
+- [ ] Embed custom Casio WQV-1 EXIF metadata on downloaded PNGs.
 
 ---
 

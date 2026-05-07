@@ -10,24 +10,29 @@ body {
     color: white;
     font-family: 'VT323', monospace;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
     margin: 0;
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding-bottom: 120px; /* Space for the gallery */
 }
 
 .casio-body {
     background: var(--case-color);
-    padding: 20px;
+    padding: clamp(10px, 4vw, 20px);
     border-radius: 40px;
     box-shadow: 
         inset 2px 2px 0 #fff,
         inset -4px -4px 0 var(--shadow-color),
         10px 20px 40px rgba(0,0,0,0.5);
-    width: 320px;
+    width: min(320px, 95vw);
     border: 8px solid #374151;
     position: relative;
+    margin: auto;
+    transform-origin: center center;
 }
 
 .lcd-screen {
@@ -230,4 +235,23 @@ body {
 .modal-delete-btn:active {
     transform: translateY(2px);
     border-bottom-width: 2px;
+}
+
+/* Responsiveness for very short screens */
+@media (max-height: 700px) {
+    .casio-body {
+        transform: scale(0.9);
+    }
+}
+
+@media (max-height: 600px) {
+    .casio-body {
+        transform: scale(0.75);
+    }
+}
+
+@media (max-height: 500px) {
+    .casio-body {
+        transform: scale(0.6);
+    }
 }
