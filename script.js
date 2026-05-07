@@ -177,6 +177,12 @@ camBtn.onclick = () => {
     showMessage("CAM MODE");
 };
 
+function deletePhoto(dataUrl) {
+    let photos = JSON.parse(localStorage.getItem('wqv1_photos') || '[]');
+    photos = photos.filter(p => p !== dataUrl);
+    localStorage.setItem('wqv1_photos', JSON.stringify(photos));
+}
+
 function addImageToGallery(dataUrl) {
     const img = document.createElement('img');
     img.src = dataUrl;
@@ -186,6 +192,7 @@ function addImageToGallery(dataUrl) {
         const modal = document.getElementById('imageModal');
         const modalImg = document.getElementById('modalImage');
         const downloadBtn = document.getElementById('downloadModalBtn');
+        const deleteBtn = document.getElementById('deleteModalBtn');
 
         modalImg.src = dataUrl;
         modal.classList.remove('hidden');
@@ -196,6 +203,15 @@ function addImageToGallery(dataUrl) {
             link.download = `WQV1_${Date.now()}.png`;
             link.href = dataUrl;
             link.click();
+        };
+
+        deleteBtn.onclick = () => {
+            playClick();
+            deletePhoto(dataUrl);
+            img.remove();
+            modal.classList.add('hidden');
+            if (photoCount > 0) photoCount--;
+            counterEl.innerText = photoCount.toString().padStart(3, '0');
         };
     };
     gallery.prepend(img);

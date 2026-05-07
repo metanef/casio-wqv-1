@@ -182,7 +182,6 @@ body {
 }
 
 .modal-download-btn {
-    margin-top: 1.5rem;
     background-color: #4b5563;
     border: none;
     border-bottom: 4px solid #1f2937;
@@ -203,6 +202,31 @@ body {
 }
 
 .modal-download-btn:active {
+    transform: translateY(2px);
+    border-bottom-width: 2px;
+}
+
+.modal-delete-btn {
+    background-color: #dc2626;
+    border: none;
+    border-bottom: 4px solid #991b1b;
+    color: white;
+    font-weight: bold;
+    padding: 0.5rem 2rem;
+    border-radius: 0.25rem;
+    font-family: 'VT323', monospace;
+    font-size: 1.5rem;
+    line-height: 2rem;
+    letter-spacing: 0.1em;
+    transition: all 0.1s;
+    cursor: pointer;
+}
+
+.modal-delete-btn:hover {
+    background-color: #b91c1c;
+}
+
+.modal-delete-btn:active {
     transform: translateY(2px);
     border-bottom-width: 2px;
 }
