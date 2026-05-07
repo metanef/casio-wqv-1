@@ -48,7 +48,8 @@ Want to contribute or see what's coming next? Here's the roadmap:
 - [x] Add authentic retro sound effects (shutter click, button beeps).
 - [x] Save the gallery photos to `localStorage` so they persist after refreshing the app.
 - [x] Add different retro color palettes (e.g., GameBoy green, sepia).
-- [ ] Implement a self-timer feature.
+- [x] Implement a self-timer feature.
+- [ ] Add a button toreturn camera for phones
 - [ ] Improve the UI responsiveness for very small or very large screens.
 
 ---

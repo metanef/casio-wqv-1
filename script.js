@@ -11,6 +11,8 @@ const gallery = document.getElementById('gallery');
 const msgBox = document.getElementById('msgBox');
 const counterEl = document.getElementById('counter');
 const modeIndicator = document.getElementById('mode-indicator');
+const timerBtn = document.getElementById('timerBtn');
+const timerLabel = document.getElementById('timerLabel');
 
 let brightness = 1.0;
 const palettes = ['GRAY', 'GAMEBOY', 'SEPIA', 'VIRTUALBOY', 'INV'];
@@ -18,6 +20,8 @@ let currentPaletteIndex = 0;
 let photoCount = 0;
 let currentSource = 'camera'; // 'camera' or 'image'
 let importedImage = null;
+let timerDuration = 0;
+let isTimerRunning = false;
 
 const bayerMatrix = [
     [0, 8, 2, 10],
@@ -267,7 +271,17 @@ function loadPhotos() {
     });
 }
 
-shutterBtn.onclick = () => {
+timerBtn.onclick = () => {
+    if (isTimerRunning) return;
+    playClick();
+    if (timerDuration === 0) timerDuration = 3;
+    else if (timerDuration === 3) timerDuration = 10;
+    else timerDuration = 0;
+    
+    timerLabel.innerText = timerDuration === 0 ? "TMR: OFF" : `TMR: ${timerDuration}S`;
+};
+
+function takePhoto() {
     playShutter();
     
     // Scale up the image for saving/downloading (120px -> 480px)
@@ -287,6 +301,32 @@ shutterBtn.onclick = () => {
 
     canvas.style.filter = 'brightness(3)';
     setTimeout(() => canvas.style.filter = 'contrast(1.1) brightness(0.9)', 100);
+}
+
+shutterBtn.onclick = () => {
+    if (isTimerRunning) return;
+    
+    if (timerDuration === 0) {
+        takePhoto();
+    } else {
+        isTimerRunning = true;
+        let timeLeft = timerDuration;
+        modeIndicator.innerText = `TMR ${timeLeft}`;
+        playClick();
+        
+        const interval = setInterval(() => {
+            timeLeft--;
+            if (timeLeft > 0) {
+                modeIndicator.innerText = `TMR ${timeLeft}`;
+                playClick();
+            } else {
+                clearInterval(interval);
+                modeIndicator.innerText = currentSource === 'camera' ? 'LIVE' : 'FILE';
+                isTimerRunning = false;
+                takePhoto();
+            }
+        }, 1000);
+    }
 };
 
 brightBtn.onclick = () => {
