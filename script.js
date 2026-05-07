@@ -110,7 +110,11 @@ function processFrame() {
         ctx.drawImage(video, startX, startY, size, size, 0, 0, 120, 120);
         applyWQV1Filter();
     } else if (currentSource === 'image' && importedImage) {
-        ctx.drawImage(importedImage, 0, 0, 120, 120);
+        // Centre l'image importée (Crop carré)
+        const size = Math.min(importedImage.width, importedImage.height);
+        const startX = (importedImage.width - size) / 2;
+        const startY = (importedImage.height - size) / 2;
+        ctx.drawImage(importedImage, startX, startY, size, size, 0, 0, 120, 120);
         applyWQV1Filter();
     }
     requestAnimationFrame(processFrame);
@@ -265,7 +269,17 @@ function loadPhotos() {
 
 shutterBtn.onclick = () => {
     playShutter();
-    const dataUrl = canvas.toDataURL('image/png');
+    
+    // Scale up the image for saving/downloading (120px -> 480px)
+    const exportCanvas = document.createElement('canvas');
+    const scale = 4;
+    exportCanvas.width = canvas.width * scale;
+    exportCanvas.height = canvas.height * scale;
+    const exportCtx = exportCanvas.getContext('2d');
+    exportCtx.imageSmoothingEnabled = false;
+    exportCtx.drawImage(canvas, 0, 0, exportCanvas.width, exportCanvas.height);
+    
+    const dataUrl = exportCanvas.toDataURL('image/png');
     addImageToGallery(dataUrl);
     savePhoto(dataUrl);
 
