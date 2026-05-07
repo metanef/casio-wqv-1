@@ -49,7 +49,7 @@ Want to contribute or see what's coming next? Here's the roadmap:
 - [x] Save the gallery photos to `localStorage` so they persist after refreshing the app.
 - [x] Add different retro color palettes (e.g., GameBoy green, sepia).
 - [x] Implement a self-timer feature.
-- [ ] Add a button toreturn camera for phones
+- [x] Add a button to change between front and back camera for phone
 - [ ] Improve the UI responsiveness for very small or very large screens.
 
 ---

@@ -22,6 +22,7 @@ let currentSource = 'camera'; // 'camera' or 'image'
 let importedImage = null;
 let timerDuration = 0;
 let isTimerRunning = false;
+let currentFacingMode = 'user';
 
 const bayerMatrix = [
     [0, 8, 2, 10],
@@ -92,8 +93,11 @@ function playShutter() {
 
 async function initCamera() {
     try {
+        if (video.srcObject) {
+            video.srcObject.getTracks().forEach(track => track.stop());
+        }
         const stream = await navigator.mediaDevices.getUserMedia({
-            video: { facingMode: 'user', width: 480, height: 480 },
+            video: { facingMode: currentFacingMode, width: 480, height: 480 },
             audio: false
         });
         video.srcObject = stream;
@@ -101,7 +105,7 @@ async function initCamera() {
         modeIndicator.innerText = 'LIVE';
     } catch (err) {
         console.error("Camera error:", err);
-        showMessage("CAMERA ERROR");
+        showMessage("CAM ERROR");
     }
 }
 
@@ -210,9 +214,13 @@ fileInput.onchange = (e) => {
 
 camBtn.onclick = () => {
     playClick();
-    currentSource = 'camera';
-    modeIndicator.innerText = 'LIVE';
-    showMessage("CAM MODE");
+    if (currentSource === 'camera') {
+        currentFacingMode = currentFacingMode === 'user' ? 'environment' : 'user';
+        showMessage(currentFacingMode === 'user' ? "FRONT CAM" : "REAR CAM");
+    } else {
+        showMessage("CAM MODE");
+    }
+    initCamera();
 };
 
 function deletePhoto(dataUrl) {
