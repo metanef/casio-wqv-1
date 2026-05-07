@@ -3,7 +3,7 @@ const canvas = document.getElementById('outputCanvas');
 const ctx = canvas.getContext('2d', { alpha: false });
 const shutterBtn = document.getElementById('shutterBtn');
 const brightBtn = document.getElementById('brightBtn');
-const invertBtn = document.getElementById('invertBtn');
+const colorBtn = document.getElementById('colorBtn');
 const importBtn = document.getElementById('importBtn');
 const camBtn = document.getElementById('camBtn');
 const fileInput = document.getElementById('fileInput');
@@ -13,7 +13,8 @@ const counterEl = document.getElementById('counter');
 const modeIndicator = document.getElementById('mode-indicator');
 
 let brightness = 1.0;
-let isInverted = false;
+const palettes = ['GRAY', 'GAMEBOY', 'SEPIA', 'VIRTUALBOY', 'INV'];
+let currentPaletteIndex = 0;
 let photoCount = 0;
 let currentSource = 'camera'; // 'camera' or 'image'
 let importedImage = null;
@@ -133,9 +134,38 @@ function applyWQV1Filter() {
         const finalLevel = Math.min(15, Math.max(0, ditheredLevel));
 
         let output = (finalLevel / 15) * 255;
-        if (isInverted) output = 255 - output;
+        let r, g, b;
 
-        data[i] = data[i + 1] = data[i + 2] = output;
+        const palette = palettes[currentPaletteIndex];
+
+        if (palette === 'INV') {
+            r = g = b = 255 - output;
+        } else if (palette === 'GAMEBOY') {
+            // dark: 15, 56, 15 (#0f380f)
+            // light: 155, 188, 15 (#9bbc0f)
+            r = (output / 255) * (155 - 15) + 15;
+            g = (output / 255) * (188 - 56) + 56;
+            b = (output / 255) * (15 - 15) + 15;
+        } else if (palette === 'SEPIA') {
+            // dark: 44, 21, 3
+            // light: 255, 240, 200
+            r = (output / 255) * (255 - 44) + 44;
+            g = (output / 255) * (240 - 21) + 21;
+            b = (output / 255) * (200 - 3) + 3;
+        } else if (palette === 'VIRTUALBOY') {
+            // dark: 0, 0, 0
+            // light: 255, 0, 0
+            r = output;
+            g = 0;
+            b = 0;
+        } else {
+            // GRAY
+            r = g = b = output;
+        }
+
+        data[i] = r;
+        data[i + 1] = g;
+        data[i + 2] = b;
     }
     ctx.putImageData(imageData, 0, 0);
 }
@@ -252,10 +282,10 @@ brightBtn.onclick = () => {
     showMessage(`LIGHT: ${Math.round(brightness * 10)}`);
 };
 
-invertBtn.onclick = () => {
+colorBtn.onclick = () => {
     playClick();
-    isInverted = !isInverted;
-    showMessage(isInverted ? "NEGATIVE" : "NORMAL");
+    currentPaletteIndex = (currentPaletteIndex + 1) % palettes.length;
+    showMessage(palettes[currentPaletteIndex]);
 };
 
 function updateClock() {

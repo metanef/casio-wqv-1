@@ -25,7 +25,7 @@ Experience the nostalgia of the very first watch with a built-in digital camera!
 - **PWA Support**: Install the app on your Android or iOS device to use it fullscreen and offline, just like a native app!
 - **Adjustments**:
   - **BRIGHT**: Cycle through different brightness levels.
-  - **INV**: Invert the colors for a cool negative effect.
+  - **COLOR**: Cycle through different retro color palettes (Grayscale, GameBoy, Sepia, VirtualBoy, Inverted).
 
 ---
 
@@ -47,7 +47,7 @@ Want to contribute or see what's coming next? Here's the roadmap:
 
 - [x] Add authentic retro sound effects (shutter click, button beeps).
 - [x] Save the gallery photos to `localStorage` so they persist after refreshing the app.
-- [ ] Add different retro color palettes (e.g., GameBoy green, sepia).
+- [x] Add different retro color palettes (e.g., GameBoy green, sepia).
 - [ ] Implement a self-timer feature.
 - [ ] Improve the UI responsiveness for very small or very large screens.
 
