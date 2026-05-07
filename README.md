@@ -45,9 +45,8 @@ This project is built using a lightweight, modern web stack without heavy framew
 
 Want to contribute or see what's coming next? Here's the roadmap:
 
-- [ ] Add authentic retro sound effects (shutter click, button beeps).
-- [ ] Add a visual "screen flash" animation when taking a photo.
-- [ ] Save the gallery photos to `localStorage` so they persist after refreshing the app.
+- [x] Add authentic retro sound effects (shutter click, button beeps).
+- [x] Save the gallery photos to `localStorage` so they persist after refreshing the app.
 - [ ] Add different retro color palettes (e.g., GameBoy green, sepia).
 - [ ] Implement a self-timer feature.
 - [ ] Improve the UI responsiveness for very small or very large screens.
