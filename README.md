@@ -1,6 +1,6 @@
 <div align="center">
   <img src="icon-192.png" alt="Casio WQV-1 Icon" width="120" style="border-radius: 20px;" />
-  <h1>📸 Casio WQV-1 Emulator</h1>
+  <h1>Casio WQV-1 Emulator</h1>
   <p><strong>A retro web-based emulator for the classic Casio WQV-1 Wrist Camera.</strong></p>
 
   [![Live Demo](https://img.shields.io/badge/Play-Live_Demo-brightgreen.svg?style=for-the-badge&logo=vercel)](https://metanef.github.io/casio-wqv-1/)
@@ -17,13 +17,13 @@ Experience the nostalgia of the very first watch with a built-in digital camera!
 
 ## ✨ Features
 
-- **📷 Live Camera Feed**: Access your webcam/phone camera with a real-time retro dithered filter.
-- **🖼️ Image Import**: Upload any image from your device to see it transformed through the WQV-1 lens.
-- **💾 Take Photos**: Snap pictures that automatically save to your interactive bottom gallery.
-- **🔍 Modal View**: Click on any photo in the gallery to view it enlarged with perfect pixel-art scaling.
-- **📥 Download**: Save your 120x120 retro masterpieces directly to your device.
-- **📱 PWA Support**: Install the app on your Android or iOS device to use it fullscreen and offline, just like a native app!
-- **🎛️ Adjustments**:
+- **Live Camera Feed**: Access your webcam/phone camera with a real-time retro dithered filter.
+- **Image Import**: Upload any image from your device to see it transformed through the WQV-1 lens.
+- **Take Photos**: Snap pictures that automatically save to your interactive bottom gallery.
+- **Modal View**: Click on any photo in the gallery to view it enlarged with perfect pixel-art scaling.
+- **Download**: Save your 120x120 retro masterpieces directly to your device.
+- **PWA Support**: Install the app on your Android or iOS device to use it fullscreen and offline, just like a native app!
+- **Adjustments**:
   - **BRIGHT**: Cycle through different brightness levels.
   - **INV**: Invert the colors for a cool negative effect.
 
@@ -45,12 +45,12 @@ This project is built using a lightweight, modern web stack without heavy framew
 
 Want to contribute or see what's coming next? Here's the roadmap:
 
-- [ ] 🔊 Add authentic retro sound effects (shutter click, button beeps).
-- [ ] ⚡ Add a visual "screen flash" animation when taking a photo.
-- [ ] 💾 Save the gallery photos to `localStorage` so they persist after refreshing the app.
-- [ ] 🎨 Add different retro color palettes (e.g., GameBoy green, sepia).
-- [ ] ⏱️ Implement a self-timer feature.
-- [ ] 📱 Improve the UI responsiveness for very small or very large screens.
+- [ ] Add authentic retro sound effects (shutter click, button beeps).
+- [ ] Add a visual "screen flash" animation when taking a photo.
+- [ ] Save the gallery photos to `localStorage` so they persist after refreshing the app.
+- [ ] Add different retro color palettes (e.g., GameBoy green, sepia).
+- [ ] Implement a self-timer feature.
+- [ ] Improve the UI responsiveness for very small or very large screens.
 
 ---
 
