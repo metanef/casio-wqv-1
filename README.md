@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="./icon-392.png" alt="Casio WQV-1 Icon" width="120" />
+  <img src="icon-392.png" alt="Casio WQV-1 Icon" width="120" />
   <h1>Casio WQV-1 Emulator</h1>
   <p><strong>A retro web-based emulator for the classic Casio WQV-1 Wrist Camera.</strong></p>
 
